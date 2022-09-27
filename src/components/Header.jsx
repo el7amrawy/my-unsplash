@@ -1,7 +1,7 @@
 import { UilUser, UilSearch } from "@iconscout/react-unicons";
 import Button from "./Button";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="text-gray-800 ">
       <nav className="w-5/6 mx-auto py-5  flex items-center justify-between">
@@ -24,7 +24,10 @@ const Header = () => {
             <UilSearch className=" absolute top-4 left-3 text-gray-300 cursor-pointer" />
           </div>
         </div>
-        <Button text="Add a photo" />
+        <Button
+          text="Add a photo"
+          clickHandler={() => props.setAddPhoto(true)}
+        />
       </nav>
     </header>
   );

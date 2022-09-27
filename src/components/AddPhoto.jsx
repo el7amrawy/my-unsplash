@@ -1,14 +1,22 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const AddPhoto = () => {
+const AddPhoto = (props) => {
   const [formData, setFormData] = useState({
     label: "",
     imgURL: "",
   });
   //   console.log(formData);
   return (
-    <div className=" w-screen h-screen bg-[#00000025] absolute top-0 left-0 flex justify-center items-center">
+    <div
+      className=" w-screen h-screen bg-[#00000025] absolute top-0 left-0 flex justify-center items-center"
+      id="addphoto"
+      onClick={(ev) => {
+        if (ev.target == document.getElementById("addphoto")) {
+          props.setAddPhoto(false);
+        }
+      }}
+    >
       <form className=" bg-white rounded-xl w-[620px]  py-6 px-8">
         <div className="flex flex-col">
           <h3 className=" font-medium leading-8 text-2xl text-gray-700">
@@ -54,7 +62,12 @@ const AddPhoto = () => {
           />
         </div>
         <div className=" mt-6 text-right leading-5 text-gray-200">
-          <span className=" inline-block mr-6 cursor-pointer">Cancel</span>
+          <span
+            className=" inline-block mr-6 cursor-pointer"
+            onClick={() => props.setAddPhoto(false)}
+          >
+            Cancel
+          </span>
           <Button text="Submit" />
         </div>
       </form>
