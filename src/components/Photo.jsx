@@ -1,10 +1,12 @@
+// import { useState } from "react";
 import Button from "./Button";
 
-const Photo = ({ imgURL, className }) => {
+const Photo = ({ imgURL, className, photo }) => {
   return (
     <div
       className={
-        "rounded-3xl h-auto overflow-hidden " + (className ? className : "")
+        "rounded-3xl h-auto overflow-hidden mt-10" +
+        (className ? className : "")
       }
     >
       <div className="w-full h-full relative group">
@@ -21,6 +23,10 @@ const Photo = ({ imgURL, className }) => {
             <Button
               text="delete"
               className="m-4 bg-transparent border-red-500 text-red-500 rounded-full"
+              clickHandler={(ev) => {
+                // ev.preventDefault()
+                photo.setDeletePhoto(true);
+              }}
             />
           </div>
           <h3 className=" text-white leading-6 font-bold text-lg w-5/6 mb-8 ml-4">

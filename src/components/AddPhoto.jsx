@@ -15,9 +15,16 @@ const AddPhoto = (props) => {
     return () => (document.documentElement.style.overflowX = "auto");
   }, [props.addPhoto]);
 
+  function submitHandler(ev) {
+    ev.preventDefault();
+    if (Object.values(formData).every((elem) => elem)) {
+    }
+    // console.log(Object.values(formData).every((elem) => elem));
+  }
+
   return (
     <div
-      className=" w-screen h-screen bg-[#00000025] absolute top-0 left-0 flex justify-center items-center"
+      className=" w-screen h-screen bg-[#00000025] fixed top-0 left-0 flex justify-center items-center"
       id="addphoto"
       onClick={(ev) => {
         if (ev.target == document.getElementById("addphoto")) {
@@ -47,6 +54,7 @@ const AddPhoto = (props) => {
                 label: ev.target.value,
               }));
             }}
+            required
             className=" mt-3 p-3  border border-gray-300 rounded-xl outline-none placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:bg-slate-50"
           />
           <label
@@ -66,6 +74,7 @@ const AddPhoto = (props) => {
               }));
             }}
             placeholder="https://images.unsplash.com/photo-1584395630827-860eee694d7b?ixlib=r..."
+            required
             className=" mt-3 p-3  border border-gray-300 rounded-xl outline-none placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:bg-slate-50"
           />
         </div>
@@ -76,7 +85,7 @@ const AddPhoto = (props) => {
           >
             Cancel
           </span>
-          <Button text="Submit" />
+          <Button text="Submit" clickHandler={submitHandler} />
         </div>
       </form>
     </div>
