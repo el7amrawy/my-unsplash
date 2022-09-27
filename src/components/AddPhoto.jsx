@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 
 const AddPhoto = (props) => {
@@ -6,7 +6,15 @@ const AddPhoto = (props) => {
     label: "",
     imgURL: "",
   });
-  //   console.log(formData);
+
+  useEffect(() => {
+    if (props.addPhoto) {
+      document.documentElement.style.overflowX = "hidden";
+    }
+
+    return () => (document.documentElement.style.overflowX = "auto");
+  }, [props.addPhoto]);
+
   return (
     <div
       className=" w-screen h-screen bg-[#00000025] absolute top-0 left-0 flex justify-center items-center"

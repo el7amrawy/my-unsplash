@@ -15,7 +15,7 @@ const Header = (props) => {
               </h5>
             </div>
           </div>
-          <div className="ml-6 relative w-80">
+          <div className="ml-6 relative w-80 hidden md:block">
             <input
               className="py-4 w-full pl-14 shadow border border-gray-300 rounded-xl outline-none placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:bg-slate-50"
               type="text"
