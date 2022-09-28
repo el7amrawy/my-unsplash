@@ -6,6 +6,7 @@ import apiHost from "../config/config";
 
 const AddPhoto = (props) => {
   const { photos, setPhotos } = props.photos;
+
   /* ------------ States ------------ */
 
   const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ const AddPhoto = (props) => {
     label: "",
   });
 
+  /* ------------ Effects ------------ */
+
   useEffect(() => {
     if (props.addPhoto) {
       document.documentElement.style.overflowX = "hidden";
@@ -21,6 +24,8 @@ const AddPhoto = (props) => {
 
     return () => (document.documentElement.style.overflowX = "auto");
   }, [props.addPhoto]);
+
+  /* ------------ Handlers ------------ */
 
   function submitHandler(ev) {
     ev.preventDefault();

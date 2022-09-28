@@ -8,18 +8,20 @@ import apiHost from "./config/config";
 
 const App = () => {
   /* ------------- States ------------- */
+
   const [addPhoto, setAddPhoto] = useState(false);
   const [deletePhoto, setDeletePhoto] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [d_id, setD_id] = useState(null);
 
+  /* ------------- Effects ------------- */
+
   useEffect(() => {
     axios.get(apiHost).then(({ data }) => {
-      console.log(data);
       setPhotos(data);
     });
   }, []);
-  /* ------------- Effects ------------- */
+
   return (
     <>
       <Header setAddPhoto={setAddPhoto} />

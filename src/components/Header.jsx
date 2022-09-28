@@ -1,4 +1,3 @@
-// import { UilUser, UilSearch } from "@iconscout/react-unicons";
 import Button from "./Button";
 
 const Header = (props) => {

@@ -7,10 +7,14 @@ const DeletePhoto = (props) => {
   const { setDeletePhoto, deletePhoto, d_id } = props;
   const { photos, setPhotos } = props.photos;
 
+  /* ------------ States ------------ */
+
   const [formData, setFormData] = useState({
     id: d_id,
     password: "",
   });
+
+  /* ------------ Handlers ------------ */
 
   function clickHandler() {
     axios

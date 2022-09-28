@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import Button from "./Button";
 
 const Photo = ({ imgURL, label, className, photo, id, setD_id }) => {
