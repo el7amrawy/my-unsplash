@@ -6,6 +6,7 @@ import apiHost from "../config/config";
 const DeletePhoto = (props) => {
   const { setDeletePhoto, deletePhoto, d_id } = props;
   const { photos, setPhotos } = props.photos;
+  const { showArr, setShowArr } = props.show;
 
   /* ------------ States ------------ */
 
@@ -27,6 +28,7 @@ const DeletePhoto = (props) => {
       .then(({ data, status }) => {
         if ((status = 200)) {
           setPhotos(data);
+          setShowArr(data);
           setDeletePhoto(false);
         } else {
           alert("wrong pass");

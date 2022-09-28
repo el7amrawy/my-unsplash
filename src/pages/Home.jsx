@@ -3,10 +3,11 @@ import Photo from "../components/Photo";
 const Home = (props) => {
   const { photo, setD_id } = props;
   const { photos, setPhotos } = props.photos;
+  const { showArr, setShowArr } = props.show;
 
   /* ----------- Elems ----------- */
 
-  const photosElems = photos.map((p) => {
+  const photosElems = showArr.map((p) => {
     return (
       <Photo
         key={p.id}

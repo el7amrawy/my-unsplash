@@ -1,6 +1,38 @@
 import Button from "./Button";
+import search from "../services/search";
+import { useEffect, useState } from "react";
 
 const Header = (props) => {
+  const { photos, setPhotos } = props.photos;
+  const { searchResult, setSearchResult } = props.search;
+  const { showArr, setShowArr } = props.show;
+
+  /* ------------ States ------------ */
+
+  const [searchString, setSearchString] = useState("");
+
+  /* ------------ Effects ------------ */
+
+  useEffect(() => {
+    if (searchResult.length && searchString.length) {
+      setShowArr([...searchResult]);
+    } else if (search.length) {
+      setShowArr([...searchResult]);
+    }
+  }, [searchResult]);
+
+  useEffect(() => {
+    if (searchString.length && photos.length) {
+      const res = search(photos, searchString);
+      console.log(res);
+      setSearchResult(res);
+    } else {
+      setSearchResult(photos);
+      if (!searchString.length) {
+      }
+    }
+  }, [searchString]);
+
   return (
     <header className="text-gray-800 ">
       <nav className="w-5/6 mx-auto py-5  flex items-center justify-between">
@@ -31,6 +63,10 @@ const Header = (props) => {
               className="py-4 w-full pl-14 shadow border border-gray-300 rounded-xl outline-none placeholder:text-sm placeholder:font-medium placeholder:text-gray-300 focus:bg-slate-50"
               type="text"
               placeholder="Search by name"
+              onChange={(ev) => {
+                setSearchString(ev.target.value);
+              }}
+              value={searchString}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"

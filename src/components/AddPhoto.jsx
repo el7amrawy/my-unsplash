@@ -6,6 +6,7 @@ import apiHost from "../config/config";
 
 const AddPhoto = (props) => {
   const { photos, setPhotos } = props.photos;
+  const { showArr, setShowArr } = props.show;
 
   /* ------------ States ------------ */
 
@@ -35,11 +36,12 @@ const AddPhoto = (props) => {
           .post(apiHost, formData)
           .then(({ data }) => {
             setPhotos(data);
+            setShowArr(data);
+            props.setAddPhoto(false);
           })
           .catch((err) => {
             alert(err);
           });
-        props.setAddPhoto(false);
       } else {
         alert("invalid link");
       }
