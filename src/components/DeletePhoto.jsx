@@ -1,21 +1,36 @@
 import { useState } from "react";
 import Button from "./Button";
+import axios from "axios";
+import apiHost from "../config/config";
 
 const DeletePhoto = (props) => {
   const { setDeletePhoto, deletePhoto, d_id } = props;
   const { photos, setPhotos } = props.photos;
 
   const [formData, setFormData] = useState({
+    id: d_id,
     password: "",
   });
 
   function clickHandler() {
-    if (formData.password == "aha") {
-      setPhotos((prev) => prev.filter((p) => p.id != d_id));
-      setDeletePhoto(false);
-    } else {
-      alert("wrong pass");
-    }
+    axios
+      .delete(apiHost, {
+        headers: {
+          Authorization: "authorizationToken",
+        },
+        data: formData,
+      })
+      .then(({ data, status }) => {
+        if ((status = 200)) {
+          setPhotos(data);
+          setDeletePhoto(false);
+        } else {
+          alert("wrong pass");
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   return (

@@ -29,7 +29,7 @@ const AddPhoto = (props) => {
         axios
           .post(apiHost, formData)
           .then(({ data }) => {
-            setPhotos((prev) => [data, ...prev]);
+            setPhotos(data);
           })
           .catch((err) => {
             alert(err);
