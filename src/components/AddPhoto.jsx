@@ -72,7 +72,7 @@ const AddPhoto = (props) => {
           <input
             id="img-label"
             type="text"
-            placeholder="Suspendisse elit massa"
+            placeholder="descripe the photo"
             value={formData.label}
             onChange={(ev) => {
               setFormData((prev) => ({
