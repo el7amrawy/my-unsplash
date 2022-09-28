@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">Image Uploader</h1>
+<h1 align="center">My Unsplash</h1>
 <div align="center">
   <h3>
     <a href="https://el7amrawy.github.io/my-unsplash/" target="_blank">
@@ -42,6 +42,7 @@
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
+- HTML
 - [Tailwind](https://tailwindcss.com/)
 - [React](https://reactjs.org/)
 

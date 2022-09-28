@@ -1,0 +1,51 @@
+version: 2.1
+orbs:
+  # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
+  node: circleci/node@5.0.2
+jobs:
+  build:
+    docker:
+      - image: "cimg/base:stable"
+      # more setup needed for aws, node, elastic beanstalk
+    steps:
+      - node/install:
+          node-version: "16.17.1"
+      - checkout
+      - run:
+          name: Install packages
+          # TODO: Install, build, deploy in both apps
+          command: |
+            npm install
+      - run:
+          name: run build
+          # TODO: Install, build, deploy in both apps
+          command: |
+            npm run build
+  deploy:
+    docker:
+      - image: "cimg/base:stable"
+      # more setup needed for aws, node, elastic beanstalk
+    steps:
+      - node/install:
+          node-version: "16.17.1"
+      - checkout
+      - run:
+          name: Configure git
+          command: |
+            git config user.email "ci-build@klukas.net" && git config user.name "ci-build"
+      - run:
+          name: Deploy
+          # TODO: Install, build, deploy in both apps
+          command: |
+            npm install && echo VITE_API=$API  > ./.env && npm run deploy
+workflows:
+  build and deploy:
+    jobs:
+      - build:
+        filters:
+          branches:
+            only:
+              - master
+      - deploy:
+          requires:
+            - build
