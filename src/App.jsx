@@ -7,15 +7,27 @@ import DeletePhoto from "./components/DeletePhoto";
 const App = () => {
   const [addPhoto, setAddPhoto] = useState(false);
   const [deletePhoto, setDeletePhoto] = useState(false);
+  const [photos, setPhotos] = useState([]);
+
   return (
     <>
       <Header setAddPhoto={setAddPhoto} />
-      <Home photo={{ deletePhoto, setDeletePhoto }} />
-      {addPhoto && <AddPhoto setAddPhoto={setAddPhoto} addPhoto={addPhoto} />}
+      <Home
+        photo={{ deletePhoto, setDeletePhoto }}
+        photos={{ photos, setPhotos }}
+      />
+      {addPhoto && (
+        <AddPhoto
+          setAddPhoto={setAddPhoto}
+          addPhoto={addPhoto}
+          photos={{ photos, setPhotos }}
+        />
+      )}
       {deletePhoto && (
         <DeletePhoto
           deletePhoto={deletePhoto}
           setDeletePhoto={setDeletePhoto}
+          photos={{ photos, setPhotos }}
         />
       )}
     </>

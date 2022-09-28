@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 
 const AddPhoto = (props) => {
+  const { photos, setPhotos } = props.photos;
+
   const [formData, setFormData] = useState({
-    label: "",
     imgURL: "",
+    label: "",
   });
 
   useEffect(() => {
@@ -18,8 +20,9 @@ const AddPhoto = (props) => {
   function submitHandler(ev) {
     ev.preventDefault();
     if (Object.values(formData).every((elem) => elem)) {
+      setPhotos((prev) => [formData, ...prev]);
+      props.setAddPhoto(false);
     }
-    // console.log(Object.values(formData).every((elem) => elem));
   }
 
   return (
