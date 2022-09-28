@@ -2,12 +2,21 @@ import { useState } from "react";
 import Button from "./Button";
 
 const DeletePhoto = (props) => {
-  const { setDeletePhoto, deletePhoto } = props;
+  const { setDeletePhoto, deletePhoto, d_id } = props;
+  const { photos, setPhotos } = props.photos;
 
   const [formData, setFormData] = useState({
     password: "",
-    imgURL: "",
   });
+
+  function clickHandler() {
+    if (formData.password == "aha") {
+      setPhotos((prev) => prev.filter((p) => p.id != d_id));
+      setDeletePhoto(false);
+    } else {
+      alert("wrong pass");
+    }
+  }
 
   return (
     <div
@@ -50,7 +59,11 @@ const DeletePhoto = (props) => {
             >
               Cancel
             </span>
-            <Button text="Delete" className=" bg-red-500" />
+            <Button
+              text="Delete"
+              className=" bg-red-500"
+              clickHandler={clickHandler}
+            />
           </div>
         </div>
       </form>

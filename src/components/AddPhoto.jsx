@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import Button from "./Button";
+import { nanoid } from "nanoid";
+import axios from "axios";
+import apiHost from "../config/config";
 
 const AddPhoto = (props) => {
   const { photos, setPhotos } = props.photos;
+  /* ------------ States ------------ */
 
   const [formData, setFormData] = useState({
+    id: nanoid(),
     imgURL: "",
     label: "",
   });
@@ -20,8 +25,19 @@ const AddPhoto = (props) => {
   function submitHandler(ev) {
     ev.preventDefault();
     if (Object.values(formData).every((elem) => elem)) {
-      setPhotos((prev) => [formData, ...prev]);
-      props.setAddPhoto(false);
+      if (IsUrl(formData.imgURL)) {
+        axios
+          .post(apiHost, formData)
+          .then(({ data }) => {
+            setPhotos((prev) => [data, ...prev]);
+          })
+          .catch((err) => {
+            alert(err);
+          });
+        props.setAddPhoto(false);
+      } else {
+        alert("invalid link");
+      }
     }
   }
 
@@ -94,5 +110,11 @@ const AddPhoto = (props) => {
     </div>
   );
 };
+function IsUrl(url) {
+  let regex = new RegExp(
+    "^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"
+  );
+  return regex.test(url);
+}
 
 export default AddPhoto;

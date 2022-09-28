@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import Button from "./Button";
 
-const Photo = ({ imgURL, label, className, photo, id }) => {
+const Photo = ({ imgURL, label, className, photo, id, setD_id }) => {
   return (
     <div
       id={id}
@@ -20,6 +20,7 @@ const Photo = ({ imgURL, label, className, photo, id }) => {
               clickHandler={(ev) => {
                 // ev.preventDefault()
                 photo.setDeletePhoto(true);
+                setD_id(id);
               }}
             />
           </div>

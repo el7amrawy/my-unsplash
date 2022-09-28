@@ -1,19 +1,32 @@
 import Photo from "../components/Photo";
-import { nanoid } from "nanoid";
 
 const Home = (props) => {
-  const { photo } = props;
+  /* ----------- States ----------- */
+  const { photo, setD_id } = props;
   const { photos, setPhotos } = props.photos;
 
-  //   console.log(props, photos);
+  /* ----------- Effects ----------- */
+
+  /* ---------------------- */
+
   const photosElems = photos.map((p) => {
-    const id = nanoid();
     return (
-      <Photo key={id} label={p.label} imgURL={p.imgURL} id={id} photo={photo} />
+      <Photo
+        key={p.id}
+        label={p.label}
+        imgURL={p.imgURL}
+        id={p.id}
+        photo={photo}
+        setD_id={setD_id}
+      />
     );
   });
+
+  /* -------------------------------------------- */
   const n = Math.floor(photosElems.length / 3);
+
   let c, d;
+
   if (photos.length <= 3) {
     c = photosElems[0];
   } else {
@@ -27,7 +40,6 @@ const Home = (props) => {
     d = photosElems.slice(n, 2 * n);
     if (photos.length % 3 != 0) d.push(photosElems.slice(3 * n + 1));
   }
-  console.log(photosElems);
   return (
     <main className="w-5/6 mx-auto mt-12  flex flex-wrap flex-col items-center lg:flex-row lg:items-start">
       <div
